@@ -1,4 +1,4 @@
-relayhost = [ak107.secure.ne.jp]:587
+relayhost = 
 smtp_use_tls = yes
 smtp_sasl_auth_enable = yes
 smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
