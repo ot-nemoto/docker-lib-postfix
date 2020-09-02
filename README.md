@@ -1,4 +1,4 @@
-# mail-container
+# docker-lib-postfix
 
 ## はじめに
 
