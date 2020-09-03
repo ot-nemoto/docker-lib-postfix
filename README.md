@@ -8,30 +8,23 @@
 
 ## docker build
 
-*Edit config/main.cf*
-
 ```sh
-# (e.g.)
-RELAYHOST=[mail.example.com]:587
-sed -i "s/^\(relayhost\).*/\1 = ${RELAYHOST}/g" config/main.cf
-```
-
-*Make sasl_passwd*
-
-```sh
-cat <<EOT > sasl_passwd
-${RELAYHOST} <user>:<pass>
-EOT
-```
-
-*Build*
-
-```sh
-docker build -t nemodija/postfix:0.1 .
+docker build -t nemodija/postfix:0.9.1 .
 ```
 
 ## docker run
 
 ```sh
-docker run -d -it -p 25:25 --privileged --name mail nemodija/postfix:0.1
+docker run -d -it -p 25:25 --privileged \
+    --name mail nemodija/postfix:0.9.1
+```
+
+### 送信メールサーバを指定し起動
+
+```sh
+docker run -d -it -p 25:25 --privileged \
+    -e RELAYHOST=[smtp.example.com]:587 \
+    -e MAIL_ADDRESS=<user> \
+    -e MAIL_PASSWORD=<password> \
+    --name mail nemodija/postfix:0.9.1
 ```
