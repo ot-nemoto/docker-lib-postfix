@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 RUN apt -y update && \
-    DEBIAN_FRONTEND=noninteractive apt -y install iproute2 postfix rsyslog sasl2-bin
+    DEBIAN_FRONTEND=noninteractive apt -y install iproute2 postfix rsyslog sasl2-bin dnsutils
 
 WORKDIR /root
 
