@@ -13,6 +13,12 @@ RUN cat master.cf | tee -a /etc/postfix/master.cf
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+COPY config/rsyslog/maillog.conf /etc/rsyslog.d/maillog.conf
+RUN sed -i -e "s/^mail/#mail/g" /etc/rsyslog.d/50-default.conf && \
+    mkdir /var/log/mail && \
+    chmod 775 /var/log/mail && \
+    chown syslog:adm /var/log/mail
+
 COPY startup.sh startup.sh
 RUN chmod +x startup.sh
 
